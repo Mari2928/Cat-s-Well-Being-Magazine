@@ -1,0 +1,624 @@
+/*Custom Fonts-------------------------------------*/
+@import url('https://fonts.googleapis.com/css?family=Coustard');
+@import url('https://fonts.googleapis.com/css?family=Quicksand');
+@import url('https://fonts.googleapis.com/css?family=Martel');
+
+/* 
+   This CSS styles for common features globally used throughout the site. 
+   It also includes CSS for Home and 5th page.
+*/
+
+/* Mobile responsive CSS-------------------------------------*/
+
+/* Style for mobile view */
+
+@media only screen and (max-width: 570px){
+
+    body{
+        background: white;
+        height: 100%;
+    }
+
+    /* Smaller font for site title */
+
+    header h1#siteTitle { font-size: 2em; }
+
+    /* Smaller font for page title */
+
+    h1.pageTitle { font-size: 1.5em; }
+
+    /* Smaller font and padding for top nav tabs */
+
+    #topNav a{
+        font-size: 12px;
+        padding: 5px;
+    }
+
+}
+
+/* Text font CSS-------------------------------------*/
+
+/* Style paragraph, article, and TOC */
+
+p, article, span, .toc {	
+    font-family: 'Quicksand', Arial, Helvetica, sans-serif;
+    font-size: 16px;;
+    color: black;
+}
+a{	/* for paragraph and article */
+    color: rgb(1,141,176);
+}
+
+figcaption {  /* figurecaption for image */
+    background: rgb(255,253,235);
+    font-size: 15px;
+    color: rgb(107,136,143);
+}
+
+.comment {	/* Comment displayed for user */
+    color: rgb(189,30,30);
+    font-weight: 700;
+    text-align: center;
+}
+
+/* h1 CSS-------------------------------------*/
+
+/* for page title */
+
+h1.pageTitle {	
+    font-family: 'Coustard', Arial, Helvetica, sans-serif;
+    font-size: 2.2em;;
+    color: rgb(24, 41, 46);
+    font-weight: normal;
+    text-shadow: 2px 2px 2px rgb(250,230,115);
+    letter-spacing: 0.04em;
+    position: relative;
+    padding: 0.3em;
+}
+
+/* Stripe underline for h1 page title 
+   referred from: https://saruwakakun.com/html-css/reference/border
+   and adapted to my site by changing the color definition.
+ */
+
+h1.pageTitle:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 7px;
+  background: repeating-linear-gradient(
+	-45deg, rgb(250,230,115), rgb(250,230,115) 2px, white 2px, white 4px);
+}
+
+/* h3 h4 CSS-------------------------------------*/
+
+/* for article title */
+
+h3{	
+    font-family: 'Martel', Arial, Helvetica, sans-serif;
+    font-size: 25px;;
+    color: rgb(99,58,25);
+    font-weight: bold;
+    letter-spacing: 0.04em;
+}
+
+h4{	/* for article sub-title */
+    font-family: 'Quicksand', Arial, Helvetica, sans-serif;
+    font-size: 24px;;
+    color: rgb(99,58,25);
+    font-weight: bold;
+    letter-spacing: 0.04em;
+}
+
+/* Normal button CSS-------------------------------------*/
+
+/* 
+   Button with animation that is globaly used. 
+   Reffered: https://deshinon.com/2019/03/02/simple-button-css/
+   and adopted to my site by simplifying the code and changing color, font, padding, and margin.
+ */
+
+button{
+    font-family: 'Coustard', Arial, Helvetica, serif;
+    font-weight: normal;
+    text-shadow: 1px 1px 2px grey;
+    background:rgb(139,224,252);
+    color:#fff;
+    border:none;
+    position:relative;
+    height:60px;
+    font-size:1.6em;
+    padding: 15px;
+    margin: 5px;
+    cursor:pointer;
+    transition:800ms ease all; /* animation speed */
+    outline:none;
+}
+
+/* Change color when hovered */
+
+button:hover{ 
+    background:#fff;
+    color:rgb(139,224,252);
+}
+
+/* Upper and lower border lines move left and right
+   as before and after action when hovered .*/
+
+button:before,button:after{
+    content:'';
+    position:absolute;
+    top:0;
+    right:0;
+    height:2px;
+    width:0;
+    background: rgb(139,224,252);
+    transition:400ms ease all;
+}
+
+button:after{
+    right:inherit;
+    top:inherit;
+    left:0;
+    bottom:0;
+}
+
+button:hover:before,button:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}
+
+/* Grid CSS-------------------------------------*/
+
+/* Decorate the site skelton structured with grid system from Bootstrap.
+   To color header and footer sections at once, I colored the container blue 
+   and overcoated the page contents' rows with white. */
+
+.container{ /* container contains whole site */
+    border-left: 1px solid #E6E6FA;
+    border-right: 1px solid #E6E6FA;
+    background-color: #C2EEFF;
+}
+
+.row{ background-color: white; }
+
+.col-md-9 { border-right: 1px solid #C2EEFF; }
+
+#row1 .col-6{ /* a top row for About and Contact */
+    background-color: #C2EEFF; 
+}
+
+/* Article CSS-------------------------------------*/
+
+/* Decorate article border make it look like hand-drawn.
+   Referred codepen.io: https://codepen.io/tmrDevelops/pen/NPXodB
+   to check the border-radius. Adapted to my site by
+   simplifying the code, changing color, and defining different classes. */
+
+.wrapper{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.wrappedArticle{ /* Global article design */
+    background: rgb(255,253,235);
+    border-radius: 240px 15px 100px 15px / 15px 200px 15px 185px;
+    padding: 4%;
+    margin-bottom: 10px;
+    border: 2px solid #333;
+}
+
+/* Read more/Close button CSS-------------------------------------*/
+
+/* Style gradient button with "Read more" and "Close" function. 
+   Referred metrograph.jp: https://metrograph.jp/css_gradation_paragraph/
+   and adopted to my site by removing unnecessary codes and changing the design.
+*/
+
+/* Wrapper for the button */
+
+.grad-wrap {	
+    position: relative;
+}
+
+.grad-wrap + .grad-wrap {
+   margin-top: 40px;
+}
+
+/* Style Read more/Close button */
+
+.grad-btn {	
+    font-family: 'Quicksand', Arial, Helvetica, sans-serif;
+    text-shadow: 1px 1px 2px black;
+    z-index: 2;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 148px;
+    margin: auto;
+    padding: .3em 0;
+    border-radius: 15px;
+    background: rgb(250,230,115);
+    color: #fff;
+    font-size: 1.3rem;
+    text-align: center;
+    cursor: pointer;
+    transition: .2s ease;
+    box-shadow: 0 0 3px rgba(0,0,0,.3);
+}
+
+/* Read more is displayed by default */
+
+.grad-btn::after { 
+    content: "Read more"
+}
+
+/* Change color when hovered */
+
+.grad-btn:hover {  
+    background: #fff;
+    color: rgb(252,203,5);
+    text-shadow: 1px 1px 2px black;
+}
+
+/* Style the hidden/displayed content */
+
+.grad-item {	
+    position: relative;
+    overflow: hidden;
+    height: 130px; 
+}
+
+.grad-item p + p {
+   margin-top: 1em;
+}
+
+.grad-item::before {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    content: "";
+    width: 100%;
+    height: 40px; /* Range to hide with gradient */
+    background: -webkit-linear-gradient(top, 
+	rgba(255,253,235,0) 0%, 
+	rgba(255,253,235,0.9) 50%, 
+	rgba(255,253,235,0.9) 50%, 
+	rgb(255,253,235) 100%);
+    background: linear-gradient(top, 
+	rgba(255,253,235,0) 0%, 
+	rgba(255,253,235,0.9) 50%, 
+	rgba(255,253,235,0.9) 50%, 
+	rgb(255,253,235) 100%);
+}
+
+/* Input type 'checkbox' is used to trigger the display action of article */
+
+.grad-trigger {
+  display: none;
+}
+.grad-trigger:checked ~ .grad-btn {
+  bottom: -2em;
+}
+.grad-trigger:checked ~ .grad-btn::after {
+  content: "Close"
+}
+.grad-trigger:checked ~ .grad-btn .fa {
+  transform: rotate(180deg);
+}
+.grad-trigger:checked ~ .grad-item {
+  height: auto;
+}
+.grad-trigger:checked ~ .grad-item::before {
+  display: none;
+}
+
+/* Breadcrumb CSS-------------------------------------*/
+
+/* Breadcrumb navigates where you are in the site. */
+
+ul.breadcrumb {
+    font-family: 'Quicksand', Arial, Helvetica, sans-serif;
+    padding: 9px 5px;
+    list-style: none;
+    background-color: rgba(255,255,255,1);
+    font-size: 15px;
+}
+ul.breadcrumb li+li:before {
+    padding: 9px 5px;
+    color: black;
+    content: "/\0020"; /* separation of texts */
+}
+ul.breadcrumb li a {
+    color: rgba(2,117,216,1);
+    text-decoration: none;
+}
+
+/* Change color and show underline when hovered */
+
+ul.breadcrumb li a:hover {
+    color: rgba(1,68,126,1);
+    text-decoration: underline;
+}
+
+/* Change font size CSS-------------------------------------*/
+
+/* Style small A, medium A, and large A on top right of the left column */
+
+.small	{ font-size:0.9em; color:rgb(196,6,25); font-weight: bold; }
+.medium { font-size:1.5em; color:rgb(196,6,25); font-weight: bold; }
+.large	{ font-size:2.0em; color:rgb(196,6,25); font-weight: bold; }
+
+/* Show pointer when hovered */
+
+#smallA, #mediumA, #largeA { cursor: pointer; }
+
+/* Apeears on top right of the left column */
+
+#changeSize { text-align: right; }
+
+
+/* Go-to-Top icon CSS-------------------------------------*/
+
+/* Style Go-to-Top image button on bottom right of each page.
+   Referred W3Schools: https://www.w3schools.com/howto/howto_js_scroll_to_top.asp
+   and adopted to my site by changing button image, color and design. 
+   My hand-drawn cat image is used instead of box decoration by W3S. */
+
+#topBtn {
+    font-family: 'Coustard', Arial, Helvetica, sans-serif;
+    text-shadow: 2px 2px 2px rgb(250,230,115);
+    display: none;
+    position: fixed;
+    bottom: 5px;
+    right: 30px;
+    z-index: 99;
+    font-size: 18px;
+    color: black;
+    cursor: pointer;
+    text-align: center;
+}
+
+/* Make the icon color lighter when hovered */
+
+#topBtn:hover {	
+    opacity: 70%;
+}
+
+/* HOME CSS-------------------------------------*/
+
+/* Carousel positioning */
+
+#mainImage { margin: 10px; }
+
+/* Style h5 text in each carousel image */
+
+h5.carouselText{
+    text-shadow: 1px 1px 1px black; 
+    font-family: 'Martel', Arial, Helvetica, sans-serif;
+    font-size: 25px;;
+    font-weight: bold;
+    color: white;
+    letter-spacing: 0.04em;
+}
+
+/* Intro article design */
+
+.wrappedIntro{ 
+    background: #F8F8FF;
+    border-radius: 240px 15px 100px 15px / 15px 200px 15px 185px;
+    padding: 4%;
+    margin: 10px;
+    border: 2px solid #333;
+}
+
+/* About Us section. ML app area also has the same design */
+
+#aboutUs, #MLappArea {
+    border: 2px solid rgb(99,58,25);
+    border-style: dotted;
+    border-radius: 15px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+/* About and Contact  CSS-------------------------------------*/
+
+/* Text links for About and Contact on top of the site */
+
+/* Style 'About' text */
+
+#about a{
+    font-family: 'Quicksand', Arial, Helvetica, sans-serif;
+    font-size: 15px;;
+    text-shadow: 1px 1px 1px grey;
+    color: white;
+    font-weight: bold;
+    text-align: left;
+    margin: 5px 0px 0px 30px;
+}
+
+/* Style 'Contact' text */
+
+#contact a{
+    font-family: 'Quicksand', Arial, Helvetica, sans-serif;
+    font-size: 15px;;
+    text-shadow: 1px 1px 1px grey;
+    font-weight: bold;
+    color: white;
+    margin: 5px 30px 0px 0px;
+}
+
+#contact{ text-align: right; }
+
+
+/* Contact form  CSS-------------------------------------*/
+
+/* Contact form displayed at the bottom right of the page when clicked.
+   Referred W3Schools.com: https://www.w3schools.com/howto/howto_js_popup_form.asp
+   and adapted to my site by changing the font family, color, input items, and form action. */
+
+/* Show pointer when hovered */
+
+.open-button {
+    cursor: pointer;
+}
+
+/* Popup Contact form - hidden by default */
+
+.form-popup {
+  display: none;
+  position: fixed;
+  bottom: 0;	/* fixed at the bottom right*/
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+/* Style Contact form's container */
+
+.form-container {
+  font-family: 'Quicksand', Arial, Helvetica, sans-serif;
+  text-align: left;
+  max-width: 300px;
+  padding: 10px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+
+.form-container input[type=text], .form-container textarea {
+  width: 100%;
+  padding: 15px;
+  margin: 0px 0 5px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+/* When the inputs get focus, do something */
+
+.form-container input[type=text]:focus, .form-container textarea:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Style 'Send' button */
+
+.form-container .btn {
+  font-family: 'Quicksand', Arial, Helvetica, sans-serif;
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+/* Style 'Cancel' button */
+
+.form-container .cancel {
+  background-color: red;
+}
+
+
+/* Header CSS-------------------------------------*/
+
+/* Site title as a main header text appealing with cute friendly font */
+
+header h1#siteTitle {
+    font-family: 'Coustard', Arial, Helvetica, serif;
+    font-weight: normal;
+    font-size: 3em;
+    text-shadow: 1px 1px 2px grey;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin: 5px 30px 5px 30px;
+    border-bottom: 1px solid white;	
+    border-top: 1px solid white;
+}
+
+/* Remove link's underline */
+
+header a:hover{ 
+    text-decoration: none; 
+}
+
+/* Top navi tabs CSS-------------------------------------*/
+
+/* "nav nav-tabs" class from Bootstrap is used so the
+    current page is visually recognizable by active tab */
+
+#topNav a{
+    font-family: 'Quicksand', Arial, Helvetica, sans-serif;
+    font-size: 14.5px;;
+    color: black;
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 1px 2px 2px white;
+    padding: 10px;
+}
+
+/* Side navi bar CSS-------------------------------------*/
+
+/* Five images and text links of all child pages on side bar. "jquery.arctext" as 
+   an external JS library(https://tympanus.net/Development/Arctext/) is used to 
+   make the texts curved. To display the side bar both for desktop and tablet views, 
+   margin-left is used and image width is set to 170px.
+*/
+
+/* Style rounded image */
+
+.sideNavImages{ 
+    width: 170px;
+    border-radius: 50%;
+    box-shadow: 0 0 8px gray;
+    margin-left: 5px; 
+}
+
+/* Curved text from JS library, ArcText */
+
+.arcText {
+    margin-left: 10px;
+}
+
+/* Footer CSS-------------------------------------*/
+
+/* Style texts in contactInfo section in footer */
+
+ul.contactInfo {
+    font-family: 'Quicksand', Arial, Helvetica, sans-serif;
+    font-size: 14px;;
+    color: black;
+    list-style: none;
+    text-align: center;
+}
+
+/* Style text links */
+
+ul.contactInfo li a {
+    color: rgba(2,117,216,1);
+    text-decoration: none;
+}
+
+/* Change color and show underline when hovered */
+
+ul.contactInfo li a:hover {
+    color: rgba(1,68,126,1);
+    text-decoration: underline;
+}
+
+
+/* Food (5th page) CSS-------------------------------------*/
+
+/* Row with two columns for each recipe: set the same background color set for article */
+
+.recipeInfo .row {	
+    background: rgb(255,253,235);
+} 

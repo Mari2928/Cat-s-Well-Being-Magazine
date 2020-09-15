@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- This head section contains all the invisible information about the page -->
+<head>
+  <title>Cat's Well Being Magazine - Prevent Disease</title>
+  <meta charset="utf-8">
+  <meta name="description" content="This is a website for people who care about their cats' well being.">
+  <meta name="author" content="Cat's Well Being Study Group">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="refresh" content="600">
+  <meta name="keywords" content="Happiness and health for cats - Cat's Well Being Magazine">
+
+  <!-- Include Bootstrap CSS to enable using the framework -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <!-- Include original CSS for this website -->
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/prevention.css">
+
+  <!-- Include Handlebars from a CDN to use template engine -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.3/handlebars.min.js"></script>
+
+</head>
+<body>
+<!-- This container section contains the structure for all the visible content -->
+<div class="container">
+
+<!-- Row 1 start: this row contains two columns for About and Contact -->
+<div class="row" id="row1">
+
+	<div class="col-6">	<!-- Column for About -->
+		<div id = "about"><a href="index.html#aboutUs">About</a></div>
+	</div>
+
+	<div class="col-6">	<!-- Column for Contact -->
+		<div id = "contact">
+	<!-- 
+		A pop-up contact form referred W3Schools.com: https://www.w3schools.com/howto/howto_js_popup_form.asp
+		and adapted to my site by changing the input items and adding function to send email to the site owner. 
+		Google Form is linked to enable secure email communication.
+		Contact form is displayed when 'Contact' is clicked and is not displayed when 'Close' is clicked.
+	-->
+		<a class="open-button" onclick="openForm()" >Contact</a>
+		<div class="form-popup" id="myForm"> <!-- pass user inputs to Google Form through the link below -->
+  		<form class="form-container" 
+			action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSelU13h7cLCPmUGS5-tAA7W2bpd2BA7L9rey_DTJeL5kVN9lQ/formResponse" target="_blank">
+   		 	<h1>Contact</h1>
+   		 	<label><b>Name</b></label>	<!-- entry# as name is used to link with my Google form -->
+   		 		<input class="name" type="text" placeholder="Enter Name" name="entry.316160415" required>
+   		 	<label><b>Email</b></label>
+   		 		<input class="email" type="text" placeholder="Enter Email" name="entry.478390654" required>
+   		 	<label><b>Message</b></label>
+	  	 		<textarea class="msg" rows="4" cols="50" name="entry.168446678" placeholder="Enter a message here" required></textarea>
+  		 	<button type="submit" class="btn">Send</button>
+  		 	<button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+ 		</form>
+		</div>
+		</div>
+	</div>
+
+</div>	<!-- Row 1 end -->
+
+<!-- This header section displays the site title -->
+<header>
+	<a href="index.html"><h1 id="siteTitle">Cat's Well Being Magazine</h1></a>
+</header>
+
+<!-- Include jQuery to enable handlebars partials -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+
+<!-- 
+	This global top navi bar section contains text links to all pages. This reused codes are simplified with 
+	Handlebars' partials and builtin helpers as a top navi template following the instruction in the Lecture 9.2.6 
+	'Handlebars.js partials' and referring the basic usage of partials at:https://handlebarsjs.com/guide/partials.html#basic-partials. 
+	It displays an active tab if active status is true and a normal tab otherwise.
+-->
+<nav id = "topNav">
+<script id="template" type="template/handlebars">
+<ul class = "nav nav-tabs">
+{{#each tab}}
+<li class = "nav-item">
+{{#if active}} {{>activeTab}} 
+{{else}} {{>normalTab}} {{/if}}
+{{/each}}
+</ul>
+</script>
+</nav>
+
+<!-- 
+     Go to Top image button that appears on bottom right of the page. You may also find 
+     this my hand-drawn image at: https://store.line.me/stickershop/product/4176969/ja 
+     as it's in my creater collection at LINE stamp market.  
+-->
+<p id="topBtn">Top<br>
+<a href="#siteTitle"><img src="img/topBtn.png" height="90" alt="Go to Top button"></a>
+</p>
+
+<div class="row">	<!-- Row 2 start -->
+<div class="col-md-9">	<!-- Left column start -->
+<div class="row">	<!-- An inner row in a left column contains breadcrumb and change font script -->
+
+<div class="col-6">
+	<!-- Breadcrumb of all pages navigates where you are in the site -->
+	<ul class = "breadcrumb">
+		<li><a href="index.html">Home</a></li>
+		<li>Prevention</li>
+	</ul>
+</div>
+<div class="col-6">
+
+<!-- 
+     Change the font size of all articles by clicking different size of A. 
+     Referred the Lecture 7.3.5: What can we do with these elements when we have them
+     and adapted to my site by changing style and selecting <article> as affected area to
+     maintain the site design instead of <body> which was taught in the lecture. 
+     See fontScript.js for the source code in detail. 
+-->
+	<div id="changeSize">
+	<p>Font Size: 
+	<span class="small" id = "smallA">A</span>
+	<span class="medium" id = "mediumA"> A </span>
+	<span class="large" id = "largeA">A</span></p>
+	</div>
+</div>
+</div>	<!-- An inner row end -->
+
+<!-- Page contents start -->
+
+	<h1 class="pageTitle">Prevent Disease</h1>
+
+	<!-- Table of contents -->
+	<div class="toc"><b>　Table of Contents</b>
+	<ul>
+	<li><a href="prevention.html#AIappArea">AI Health Check</a></li>
+	<li><a href="prevention.html#hydration">Importance of hydration</a></li>
+	<li><a href="prevention.html#checkup">Do annual checkup</a></li>
+	<li><a href="prevention.html#signs">Catch silent signs</a></li>
+	</ul>
+	</div>
+	<br>
+
+<!-- 
+	This section contains AI health check sample. 
+	Referred Yes/No Diagnosis Tool: http://migo-media.com/yes-no/ fpr HTML source
+	and adapted to my site by changing design and questioning flow, and also
+	adding progress bar and ids with onclick action (e.g. id="1y" onclick="getId(this);")
+	to keep track of which question user clicked Yes. 
+	This enables calculating the score in healthcheck.js .
+-->
+<div id="AIappArea">
+<h3>AI Health Check</h3>
+
+<!-- Include health check JS to activate the function in this application -->
+<script src="js/healthcheck.js"></script>
+
+<span>Start AI health check with selecting which to check from dropdown menu and clicking Yes/No to answer questions.<br></span>
+
+<!-- Dropdown menu to select the cat's symptom: this is just to show the interaction image as a part of AI health check sample -->
+
+<span>I want to check his/her </span>
+<select id="dropdown-menu" name="dropdown">
+<option value="kidney">Kidney (sample)</option>
+<option value="heart" disabled >Heart (coming soon)</option>
+<option value="liver" disabled >Liver</option>
+<option value="urology" disabled >Urology</option>
+</select>
+
+<div class="yesno clearfix">
+    <!-- Sample questions of AI health check application -->
+
+    <div id="q_01" class="positionFit"> <!-- Question 1 -->
+	<div class="progress">		<!-- Progress bar from Bootstrap shows the progress of diagnosis -->
+	<div class="progress-bar progress-bar-striped" role="progressbar" style="width: 20%;" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">20%</div>
+	</div>
+        <p>Q1. Does he/she drink water more than 70ml per kg (or 300ml) per day?</p>
+        <ul>	
+	<!-- Show next question while keep track of ID name to calculate the score when Yes is clicked  -->
+        <li class="balloon"><a id="1y" onclick="getId(this);" class="btn" href="#q_02">Yes</a></li>
+        <li class="balloon"><a class="btn" href="#q_02">No</a></li>
+        </ul>
+    </div>
+ 
+    <div id="q_02" style="display: none;"> <!-- Question 2 -->
+	<div class="progress">
+	<div class="progress-bar progress-bar-striped" role="progressbar" style="width: 40%;" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">40%</div>
+	</div>
+        <p>Q2. Is his/her main food dry food?</p>
+        <ul>
+        <li class="balloon"><a id="2y" onclick="getId(this);" class="btn" href="#q_03">Yes</a></li>
+        <li class="balloon"><a class="btn" href="#q_03">No</a></li>
+        </ul>
+    </div>
+ 
+    <div id="q_03" style="display: none;"> <!-- Question 3 -->
+	<div class="progress">
+	<div class="progress-bar progress-bar-striped" role="progressbar" style="width: 60%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">60%</div>
+	</div>
+        <p>Q3. Does he/she vomit more than once in a week?</p>
+        <ul>
+        <li class="balloon"><a id="3y" onclick="getId(this);" class="btn" href="#q_04">Yes</a></li>
+        <li class="balloon"><a class="btn" href="#q_04">No</a></li>
+        </ul>
+    </div>
+
+    <div id="q_04" style="display: none;"> <!-- Question 4 -->
+	<div class="progress">
+	<div class="progress-bar progress-bar-striped" role="progressbar" style="width: 80%;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">80%</div>
+	</div>
+        <p>Q4. Does he urinate more than 150ml or 3 times a day?</p>
+        <ul>
+        <li class="balloon"><a id="4y" onclick="getId(this);" class="btn" href="#result">Yes</a></li>
+        <li class="balloon"><a class="btn" href="#result">No</a></li>
+        </ul>
+    </div>
+
+    <div id="result" style="display: none;"> <!-- Result based on the score is displayed -->
+	<div class="progress">
+	<div class="progress-bar progress-bar-striped" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>
+	</div>
+        <p id="result_target"></p>
+        <ul>
+        <li class="balloon"><a class="btn" href="prevention.html">Top</a></li>
+        </ul>
+    </div>
+</div>
+<p class="comment">
+<img src="img/AI_health_check.jpg" height="170" alt="A silhouette of sitting cat having Yes/No bubbles above."><br>
+※ AI Health Check is currently under study. This sample is to show the interaction image of the application.
+</p>
+
+</div>	<!-- AI health check sample section end -->
+
+	<!-- This "Importance of hydration" sub-title section describes about best hydration method for cat. -->
+
+	<div class= "wrapper">
+	<div class ="wrappedArticle">	<!-- Article border looks like hand-drawn -->
+	<div class="grad-wrap">		<!-- Read more/Close button using checkbox as a trigger -->
+ 	<input id="prevention_trigger1" class="grad-trigger" type="checkbox">
+ 	<label class="grad-btn" for="prevention_trigger1"><span class="fa fa-chevron-down"></span></label>
+   	<div class="grad-item">
+
+		<article>
+		<h3 id="hydration">Importance of hydration</h3>
+        	Cats may live with less water without compromising their physical functionality. 
+		But we should understand that the lack of water burdens organs. When cats lived in the wild, 
+		they consumed water and food together when they ate a captured creature. 
+		Dry cat food may be convenient for humans to feed cats, but cats lose body fluid due to digestion of dry food. Also, 
+		it is said that cats cannot absorb the water they drink into their bodies as effectively as humans. 
+		Here, we will discuss the best hydration method for cats.<br>
+		(more paragraphs to be added here...)<br>
+		</article>
+    	</div>
+  	</div>
+	</div>
+	</div>
+
+	<!-- This "Do annual checkup" sub-title section describes about how to do/use checkup for disease prevention. -->
+
+	<div class= "wrapper">
+	<div class ="wrappedArticle">
+	<div class="grad-wrap">
+ 	<input id="prevention_trigger2" class="grad-trigger" type="checkbox">
+ 	<label class="grad-btn" for="prevention_trigger2"><span class="fa fa-chevron-down"></span></label>
+   	<div class="grad-item">
+
+		<article>
+		<h3 id="checkup">Do annual checkup</h3>
+        	Regular health checks are the basis for cat disease prevention. 
+		By checking that your cat is young and healthy from time to time, you can keep track of his or her normal blood pressure 
+		and many other statistics. If, for example, a cat loses his energy but the vital signs remain normal, 
+		you may conclude that it is not due to illness but to stress or due to aging or environmental change. 
+		This section describes the items to be checked by checkup, how to use them, and how often the check up should be done.<br>
+		(more paragraphs to be added here...)<br>
+		</article>
+    	</div>
+  	</div>
+	</div>
+	</div>
+
+	<!-- This "Catch silent signs" sub-title section writes about cat's silent signs of illness. -->
+
+	<div class= "wrapper">
+	<div class ="wrappedArticle">
+	<div class="grad-wrap">
+ 	<input id="prevention_trigger3" class="grad-trigger" type="checkbox">
+ 	<label class="grad-btn" for="prevention_trigger3"><span class="fa fa-chevron-down"></span></label>
+   	<div class="grad-item">
+
+		<article>
+		<h3 id="signs">Catch silent signs</h3>
+        	Can you observe the silent signs of a cat's illness? Cats are very good at hiding pain and physical problems. 
+		As a result, there are many cases where the owner does not notice anything is wrong until a cat’s disease is very advanced. 
+		Understanding the silent signs of a cat is very important for disease prevention. 
+		Here we will discuss examples of silent signs and possible remedies.<br>
+		(more paragraphs to be added here...)<br>
+		</article>
+    	</div>
+  	</div>
+	</div>
+	</div>
+
+<!-- Page contents end -->
+
+</div>		<!-- Left column end -->
+
+<!-- Include jQuery again for Arctext as AI app section disabled it -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+
+<!-- Include arctext JS to display arc texts in the right column -->
+<script src="js/jquery.arctext.js"></script>
+
+<div class=".col-md-3">	<!-- Right column start -->
+
+<!-- 
+	This global side bar section contains the decorated arc text with a link and an image for five pages, respectively. 
+	Simplified with Handlebars' partials and builtin helper as a side navi template. See template.js for source code in detail. 
+	For curved text, I referred Arctext.js: https://tympanus.net/Development/Arctext/ and adapted to my site by putting together
+	with rounded images and changing the arc radius.
+-->
+	<div id = "sideNav"><br>   
+	<script id="sideNavTemplate" type="template/handlebars">
+	{{#each object}} {{>sideNavList}} {{/each}}
+	</script>
+	</div>
+
+</div>		<!-- Right column end -->
+</div>		<!-- row 2 end -->
+
+<footer>	<!-- Global footer section -->
+    <div id="contactInformation">
+	<address>
+            <ul class="contactInfo">
+                <li id = "contactUs">Contact Us:</li>
+                <li id = "publisherName">
+		<!-- Same contact form in 'Contact' section on top right of the site is used -->
+		<a class="open-button" onclick="openForm()">Cat's Well Being Study Group</a>
+		</li>
+                <li id = "tell">Tell: <a href="tell:+813-1234-5678">+813-1234-5678</a></li>
+		<li id = "address">Yanagawa-shi Fukuoka, Japan</li>
+		<li><a href="sitemap.html">Site Map</a></li>
+            </ul>
+	</address>
+    </div>
+</footer>
+
+</div>	<!-- container end -->
+
+<!-- Include Popper.js bootstrap.js to enable using Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" 
+	integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+<script src="js/fontScript.js"></script>	<!-- JS script to change the font size -->
+<script src="js/template.js"></script>		<!-- JS script to pre-compile global templates -->
+
+</body>
+</html>

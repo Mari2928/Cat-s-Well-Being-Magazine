@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- This head section contains all the invisible information about the page -->
+<head>
+  <title>Cat's Well Being Magazine - Make Your Cat Happy</title>
+  <meta charset="utf-8">
+  <meta name="description" content="This is a website for people who care about their cats' well being.">
+  <meta name="author" content="Cat's Well Being Study Group">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="refresh" content="600">
+  <meta name="keywords" content="Happiness and health for cats - Cat's Well Being Magazine">
+
+  <!-- Include Bootstrap CSS to enable using the framework -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <!-- Include CSS for this website -->
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+  <!-- Include Handlebars from a CDN to use template engine -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.3/handlebars.min.js"></script>
+
+</head>
+<body>
+<!-- This container section contains the structure for all the visible content -->
+<div class="container">
+
+<!-- Row 1 start: this row contains two columns for About and Contact -->
+<div class="row" id="row1">
+
+	<div class="col-6">	<!-- Column for About -->
+		<div id = "about"><a href="index.html#aboutUs">About</a></div>
+	</div>
+
+	<div class="col-6">	<!-- Column for Contact -->
+		<div id = "contact">
+	<!-- 
+		A pop-up contact form referred W3Schools.com: https://www.w3schools.com/howto/howto_js_popup_form.asp
+		and adapted to my site by changing the input items and adding function to send email to the site owner. 
+		Google Form is linked to enable secure email communication.
+		Contact form is displayed when 'Contact' is clicked and is not displayed when 'Close' is clicked.
+	-->
+		<a class="open-button" onclick="openForm()" >Contact</a>
+		<div class="form-popup" id="myForm"> <!-- pass user inputs to Google Form through the link below -->
+  		<form class="form-container" 
+			action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSelU13h7cLCPmUGS5-tAA7W2bpd2BA7L9rey_DTJeL5kVN9lQ/formResponse" target="_blank">
+   		 	<h1>Contact</h1>
+   		 	<label><b>Name</b></label>	<!-- entry# as name is used to link with my Google form -->
+   		 		<input class="name" type="text" placeholder="Enter Name" name="entry.316160415" required>
+   		 	<label><b>Email</b></label>
+   		 		<input class="email" type="text" placeholder="Enter Email" name="entry.478390654" required>
+   		 	<label><b>Message</b></label>
+	  	 		<textarea class="msg" rows="4" cols="50" name="entry.168446678" placeholder="Enter a message here" required></textarea>
+  		 	<button type="submit" class="btn">Send</button>
+  		 	<button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+ 		</form>
+		</div>
+		</div>
+	</div>
+</div>	<!-- Row 1 end -->
+
+<!-- This header section displays the site title -->
+<header>
+	<a href="index.html"><h1 id="siteTitle">Cat's Well Being Magazine</h1></a>
+</header>
+
+<!-- Include jQuery to enable handlebars partials and Arctext JS library -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+
+<!-- 
+	This global top navi bar section contains text links to all pages. This reused codes are simplified with 
+	Handlebars' partials and builtin helpers as a top navi template following the instruction in the Lecture 9.2.6 
+	'Handlebars.js partials' and referring the basic usage of partials at:https://handlebarsjs.com/guide/partials.html#basic-partials. 
+	It displays an active tab if active status is true and a normal tab otherwise.
+-->
+<nav id = "topNav">
+<script id="template" type="template/handlebars">
+<ul class = "nav nav-tabs">
+{{#each tab}}
+<li class = "nav-item">
+{{#if active}} {{>activeTab}} 
+{{else}} {{>normalTab}} {{/if}}
+{{/each}}
+</ul>
+</script>
+</nav>
+
+<!-- 
+     Go to Top image button that appears on bottom right of the page. You may also find 
+     this my hand-drawn image at: https://store.line.me/stickershop/product/4176969/ja 
+     as it's in my creater collection at LINE stamp market.  
+-->
+<p id="topBtn">Top<br>
+<a href="#siteTitle"><img src="img/topBtn.png" height="90" alt="Go to Top button"></a>
+</p>
+
+<div class="row">	<!-- Row 2 start -->
+<div class="col-md-9">	<!-- Left column start -->
+<div class="row">	<!-- An inner row in a left column contains breadcrumb and change font script -->
+
+<div class="col-6">
+
+	<!-- Breadcrumb of all pages navigates where you are in the site -->
+	<ul class = "breadcrumb">
+		<li><a href="index.html">Home</a></li>
+		<li>Happiness</li>
+	</ul>
+</div>
+<div class="col-6">
+
+<!-- 
+     Change the font size of all articles by clicking different size of A. 
+     Referred the Lecture 7.3.5: What can we do with these elements when we have them
+     and adapted to my site by changing style and selecting <article> as affected area to
+     maintain the site design instead of <body> which was taught in the lecture. 
+     See fontScript.js for the source code in detail. 
+-->
+	<div id="changeSize">
+	<p>Font Size: 
+	<span class="small" id = "smallA">A</span>
+	<span class="medium" id = "mediumA"> A </span>
+	<span class="large" id = "largeA">A</span></p>
+	</div>
+</div>
+</div>	<!-- An inner row end -->
+
+<!-- Page contents start -->
+
+	<h1 class="pageTitle">Make Your Cat Happy</h1>
+
+	<!-- Table of contents -->
+	<div class="toc"><b>　Table of Contents</b>
+	<ul>
+	<li><a href="happiness.html#MLappArea">ML Happiness Check</a></li>
+	<li><a href="happiness.html#playing">Playing</a></li>
+	<li><a href="happiness.html#touching">Touching</a></li>
+	<li><a href="happiness.html#cleaning">Cleaning</a></li>
+	<li><a href="happiness.html#feeding">Feeding</a></li>
+	<li><a href="happiness.html#environment">Creating an environment</a></li>
+	</ul>
+	</div>
+
+	<!-- ML Happiness Check application sample area -->
+
+	<!-- Include JS script to show the sample interaction of ML Happiness Check -->
+	<script src="js/happinessCheck.js"></script>
+
+	<div id="MLappArea">
+	<article>
+	<h3>ML Happiness Check</h3>
+
+	Press Record button and it will record your cat's voice for <u>5 seconds</u>. 
+	Once recording is stopped automatically, our application answers his/her happiness level using Machine Learning. 
+	It also gives you the voice data for your record.<br>
+	<p class="comment">Mobile is not supported. Access from Chrome.</p>
+
+	<!-- Run startRecord function in happinessCheck.js when clicked -->
+	<button type="button" onclick="startRecord()">Record</button><br>
+
+	<!-- Sample result is displayed here -->
+	<p id="happiness_result"></p>
+
+	<!-- Text link is activated once recording is stopped -->
+	<a id="dl">Download Voice Data</a> for your record.<br><br>
+	
+	<p class="comment">※ ML Happiness Check is currently under study. This sample is to show the interaction image of the application.</p>
+	</article>
+	</div>
+
+	<!-- This "Playing" sub-title section writes about how to make cat happy through playing -->
+
+	<div class= "wrapper">
+	<div class ="wrappedArticle">	<!-- Article border looks like hand-drawn -->
+	<div class="grad-wrap">		<!-- Read more/Close button using checkbox as a trigger -->
+ 	<input id="happiness_trigger1" class="grad-trigger" type="checkbox">
+ 	<label class="grad-btn" for="happiness_trigger1"><span class="fa fa-chevron-down"></span></label>
+   	<div class="grad-item">
+
+		<article>
+		<h3 id="playing">Playing</h3>
+        	What kind of play can cats really enjoy and feel happy with? Non-catching toys, such as light rays, 
+		can tease a cat and may even stress the cat out. The important thing is that you bond with the cat through playing. 
+		Here are some of the ways that cats will love playing.<br>
+		(more contents to be added here...)<br>
+		</article>
+    	</div>
+  	</div>
+	</div>
+	</div>
+
+	<!-- This "Touching" sub-title section writes about how to touch cat in a way he/she loves -->
+
+	<div class= "wrapper">
+	<div class ="wrappedArticle">
+	<div class="grad-wrap">
+ 	<input id="happiness_trigger2" class="grad-trigger" type="checkbox">
+ 	<label class="grad-btn" for="happiness_trigger2"><span class="fa fa-chevron-down"></span></label>
+   	<div class="grad-item">
+
+		<article>
+		<h3 id="touching">Touching</h3>
+        	Touching a cat is an effective way to make the cat feel happy, if you do it well. 
+		You have to consider the timing and type of touch in order to keep your cat happy. 
+		In particular, stroking, rubbing, cutting nails, wiping the body, and giving medication require 
+		different considerations. For example, when clipping nails or giving medication, 
+		a cat will rarely let you touch unless he or she trusts you. 
+		Here are some tips for how to touch cat in a way that he or she loves and that keeps you safe.<br>
+		(more contents to be added here...)<br>
+		</article>
+    	</div>
+  	</div>
+	</div>
+	</div>
+
+	<!-- This "Cleaning" sub-title section writes about how cleanness relates to cat's hapiness. -->
+
+	<div class= "wrapper">
+	<div class ="wrappedArticle">
+	<div class="grad-wrap">
+ 	<input id="happiness_trigger3" class="grad-trigger" type="checkbox">
+ 	<label class="grad-btn" for="happiness_trigger3"><span class="fa fa-chevron-down"></span></label>
+   	<div class="grad-item">
+
+		<article>
+		<h3 id="cleaning">Cleaning</h3>
+        	Do you know that cleanliness closely affects the mental condition and physical condition of cats? 
+		For example, many cats refuse to use a dirty litter box, which can result in urinary infections. 
+		Here we introduce cleaning points that improve the happiness of a cat.<br>
+		(more contents to be added here...)<br>
+		</article>
+    	</div>
+  	</div>
+	</div>
+	</div>
+
+	<!-- This "Feeding" sub-title section writes about how to feed cat to maximize his/her happiness. -->
+
+	<div class= "wrapper">
+	<div class ="wrappedArticle">
+	<div class="grad-wrap">
+ 	<input id="happiness_trigger4" class="grad-trigger" type="checkbox">
+ 	<label class="grad-btn" for="happiness_trigger4"><span class="fa fa-chevron-down"></span></label>
+   	<div class="grad-item">
+
+		<article>
+		<h3 id="feeding">Feeding</h3>
+        	Meal time is one of the happiest times in a cat’s daily life. 
+		It is also a very important factor that greatly affects a cat's health. Depending on how you feed, 
+		you and your cat can happily live together for over 20 years. 
+		Here we will reveal the secrets of feeding to make your cat happy and prevent illness.<br> 
+		(more contents to be added here...)<br>
+		</article>
+    	</div>
+  	</div>
+	</div>
+	</div>
+
+	<!-- This "Creating an environment" sub-title section writes about the ideal environment cat loves -->
+
+	<div class= "wrapper">
+	<div class ="wrappedArticle">
+	<div class="grad-wrap">
+ 	<input id="happiness_trigger5" class="grad-trigger" type="checkbox">
+ 	<label class="grad-btn" for="happiness_trigger5"><span class="fa fa-chevron-down"></span></label>
+   	<div class="grad-item">
+
+		<article>
+		<h3 id="environment">Creating an environment</h3>
+        	Do you know the kind of environment that a cat can deeply relax in? 
+		Even though a cat has lived in your house for a long time, he or she still has a wild instinct. 
+		Here we will suggest ways to create an environment for your cat and explain the ecology of cats in wild life.<br> 
+		(more contents to be added here...)<br>
+		</article>
+    	</div>
+  	</div>
+	</div>
+	</div>
+
+<!-- Page contents end -->
+
+</div>		<!-- Left column end -->
+
+<!-- Include arctext JS to display arc texts in the right column -->
+<script src="js/jquery.arctext.js"></script>
+
+<div class=".col-md-3">	<!-- Right column start -->
+
+<!-- 
+	This global side bar section contains the decorated arc text with a link and an image for five pages, respectively. 
+	Simplified with Handlebars' partials and builtin helper as a side navi template. See template.js for source code in detail. 
+	For curved text, I referred Arctext.js: https://tympanus.net/Development/Arctext/ and adapted to my site by putting together
+	with rounded images and changing the arc radius.
+-->
+	<div id = "sideNav"><br>   
+	<script id="sideNavTemplate" type="template/handlebars">
+	{{#each object}} {{>sideNavList}} {{/each}}
+	</script>
+	</div>
+
+</div>		<!-- Right column end -->
+</div>		<!-- row 2 end -->
+
+<footer>	<!-- Global footer section -->
+    <div id="contactInformation">
+	<address>
+            <ul class="contactInfo">
+                <li id = "contactUs">Contact Us:</li>
+                <li id = "publisherName">
+		<!-- Same contact form in 'Contact' section on top right of the site is used -->
+		<a class="open-button" onclick="openForm()">Cat's Well Being Study Group</a>
+		</li>
+                <li id = "tell">Tell: <a href="tell:+813-1234-5678">+813-1234-5678</a></li>
+		<li id = "address">Yanagawa-shi Fukuoka, Japan</li>
+		<li><a href="sitemap.html">Site Map</a></li>
+            </ul>
+	</address>
+    </div>
+</footer>
+
+</div>	<!-- container end -->
+
+<!-- Include Popper.js bootstrap.js to enable using Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" 
+	integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+<script src="js/fontScript.js"></script>	<!-- JS script to change the font size -->
+<script src="js/template.js"></script>		<!-- JS script to pre-compile global templates -->
+
+</body>
+</html>

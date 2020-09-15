@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- This head section contains all the invisible information about the page -->
+<head>
+  <title>Cat's Well Being Magazine - Project Report</title>
+  <meta charset="utf-8">
+  <meta name="description" content="This is a website for people who care about their cats' well being.">
+  <meta name="author" content="Cat's Well Being Study Group">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="refresh" content="600">
+  <meta name="keywords" content="Happiness and health for cats - Cat's Well Being Magazine">
+
+  <!-- Include Bootstrap CSS to enable using the framework -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <!-- Include CSS for this website -->
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+  <!-- Include Handlebars from a CDN to use template engine -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.3/handlebars.min.js"></script>
+
+</head>
+<body>
+<!-- This container section contains the structure for all the visible content -->
+<div class="container">
+
+<!-- Row 1 start: this row contains two columns for About and Contact -->
+<div class="row" id="row1">
+
+	<div class="col-6">	<!-- Column for About -->
+		<div id = "about"><a href="index.html#aboutUs">About</a></div>
+	</div>
+
+	<div class="col-6">	<!-- Column for Contact -->
+		<div id = "contact">
+	<!-- 
+		A pop-up contact form referred W3Schools.com: https://www.w3schools.com/howto/howto_js_popup_form.asp
+		and adapted to my site by changing the input items and adding function to send email to the site owner. 
+		Google Form is linked to enable secure email communication.
+		Contact form is displayed when 'Contact' is clicked and is not displayed when 'Close' is clicked.
+	-->
+		<a class="open-button" onclick="openForm()" >Contact</a>
+		<div class="form-popup" id="myForm"> <!-- pass user inputs to Google Form through the link below -->
+  		<form class="form-container" 
+			action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSelU13h7cLCPmUGS5-tAA7W2bpd2BA7L9rey_DTJeL5kVN9lQ/formResponse" target="_blank">
+   		 	<h1>Contact</h1>
+   		 	<label><b>Name</b></label>	<!-- entry# as name is used to link with my Google form -->
+   		 		<input class="name" type="text" placeholder="Enter Name" name="entry.316160415" required>
+   		 	<label><b>Email</b></label>
+   		 		<input class="email" type="text" placeholder="Enter Email" name="entry.478390654" required>
+   		 	<label><b>Message</b></label>
+	  	 		<textarea class="msg" rows="4" cols="50" name="entry.168446678" placeholder="Enter a message here" required></textarea>
+  		 	<button type="submit" class="btn">Send</button>
+  		 	<button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+ 		</form>
+		</div>
+		</div>
+	</div>
+
+</div>	<!-- Row 1 end -->
+
+<!-- This header section displays the site title -->
+<header>
+	<a href="index.html"><h1 id="siteTitle">Cat's Well Being Magazine</h1></a>
+</header>
+
+<!-- Include jquery to enable handlebars partials and Arctext JS library -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+
+<!-- 
+	This global top navi bar section contains text links to all pages. This reused codes are simplified with 
+	Handlebars' partials and builtin helpers as a top navi template following the instruction in the Lecture 9.2.6 
+	'Handlebars.js partials' and referring the basic usage of partials at:https://handlebarsjs.com/guide/partials.html#basic-partials. 
+	It displays an active tab if active status is true and a normal tab otherwise.
+-->
+<nav id = "topNav">
+<script id="template" type="template/handlebars">
+<ul class = "nav nav-tabs">
+{{#each tab}}
+<li class = "nav-item">
+{{#if active}} {{>activeTab}} 
+{{else}} {{>normalTab}} {{/if}}
+{{/each}}
+</ul>
+</script>
+</nav>
+
+<!-- 
+     Go to Top image button that appears on bottom right of the page. You may also find 
+     this my hand-drawn image at: https://store.line.me/stickershop/product/4176969/ja 
+     as it's in my creater collection at LINE stamp market.  
+-->
+<p id="topBtn">Top<br>
+<a href="#siteTitle"><img src="img/topBtn.png" height="90" alt="Go to Top button"></a>
+</p>
+
+<div class="row">	<!-- Row 2 start -->
+<div class="col-md-9">	<!-- Left column start -->
+<div class="row">	<!-- An inner row in a left column contains breadcrumb and change font script -->
+
+<div class="col-6">
+	<!-- Breadcrumb of all pages navigates where you are in the site -->
+	<ul class = "breadcrumb">
+		<li><a href="index.html">Home</a></li>
+		<li>Report</li>
+	</ul>
+</div>
+<div class="col-6">
+
+<!-- 
+     Change the font size of all articles by clicking different size of A. 
+     Referred the Lecture 7.3.5: What can we do with these elements when we have them
+     and adapted to my site by changing style and selecting <article> as affected area to
+     maintain the site design instead of <body> which was taught in the lecture. 
+     See fontScript.js for the source code in detail. 
+-->
+	<div id="changeSize">
+	<p>Font Size: 
+	<span class="small" id = "smallA">A</span>
+	<span class="medium" id = "mediumA"> A </span>
+	<span class="large" id = "largeA">A</span></p>
+	</div>
+</div>
+</div>	<!-- An inner row end -->
+
+<!-- Page contents start -->
+
+	<!-- This page contains the project report comprehensively explains about the development process of this magazine website. -->
+
+	<h1 class="pageTitle">Report: Large Coursework<br>MARI ASHIGA</h1>
+
+	<!-- Table of contents -->
+	<div class="toc"><b>　Table of Contents</b>
+	<ol>
+	<li><a href="report.html#reportIntro">Introduction</a></li>
+	<li><a href="report.html#inspired">3 things inspired me</a></li>
+	<li><a href="report.html#accessibilities">3 ways that my site is accessible</a></li>
+	<li><a href="report.html#usabilities">3 ways of usabilities</a></li>
+	<li><a href="report.html#learned">3 things I learned</a></li>
+	<li><a href="report.html#workedwell">What aspects worked well</a></li>
+	<li><a href="report.html#improve">What aspects could be improved</a></li>
+	<li><a href="report.html#resources">Resources used for my work</a></li>
+	<li><a href="report.html#appendices">Appendices</a></li>
+	</ol></div>
+
+	<!-- Introduction of the report -->
+
+	<div class= "wrapper">
+	<div class ="wrappedArticle">	<!-- Article border looks like hand-drawn -->
+	<div class="grad-wrap">		<!-- Read more/Close button using checkbox as a trigger -->
+ 	<input id="trigger1" class="grad-trigger" type="checkbox">
+ 	<label class="grad-btn" for="trigger1"><span class="fa fa-chevron-down"></span></label>
+   	<div class="grad-item">
+
+		<article>
+		<h3 id="reportIntro">Introduction</h3>
+        	<b>Essential story</b>　What a cat wants and what an owner wants are not always the same. 
+		If you really love your cat, you should understand your cat’s desires. 
+		I designed the website for the local group studying cat such as veterinarians or researchers 
+		and developped the prototype that might be usehul for them to share their contents with other cat related communities or cat owners. 
+		This site helps people understand what they can do to improve a cat's happiness 
+		and well being based on studies by veterinarians and researchers in the field.
+<br><br>
+
+		<b>Chosen structure</b>　To efficiently convey the important factors for a cat's well being, 
+		I thought that it is important that 1. the accessibility of each page is maximized and 2. a reader can focus on the contents. 
+		In order to implement 1, I adopted a carousel and a tab-style top navigation bar and side bar for the site structure on the main(index) page. 
+		The carousel dynamically highlights each page, and the tab-style top navigation bar makes it easy to see 
+		where you are and allows you to move quickly through all pages. 
+		The side bar is static on each page and features a cute design with catch phrases and rounded photos.  
+		For the implementation for 2, I chose a two-column structure 
+		so the reader can focus on the content with minimum distraction and can move quickly to other pages.
+		</article>
+    	</div>
+  	</div>
+	</div>
+	</div>
+
+	<!-- Stated 3 things that have inspired me when creating my website.  -->
+
+	<div class= "wrapper">
+	<div class ="wrappedArticle">
+	<div class="grad-wrap">
+ 	<input id="trigger2" class="grad-trigger" type="checkbox">
+ 	<label class="grad-btn" for="trigger2"><span class="fa fa-chevron-down"></span></label>
+   	<div class="grad-item">
+
+		<article>
+		<h3 id="inspired">3 things inspired me</h3>
+		<b>1. Technology standard for CSS</b>　 The evolution of web technology that allows me to create various objects 
+		with CSS is very inspiring. An example is the button animation that I implemented by referring to 
+		<a href="https://deshinon.com/2019/03/02/simple-button-css/." target="_blank">the CSS button designs with animation</a>. 
+		This button is implemented without JavaScript, and when hovering/clicking, the upper and lower border lines move left and right. 
+		I didn't see such cool CSS buttons fifteen years ago on any site and thought that the animation was done by computer programs.<br>
+		<button class="appButton" >Click Me</button><br><br>
+
+		<b>2. Diversity of problems solved</b>　 Next, it was impressive that someone had already solved any specific 
+		implementation problems I encountered. For example, in research to create a contact form, I found that JavaScript 
+		does not support emailing like Python or PHP due to security concerns. To solve this, I came up with the idea of 
+		linking a Google Form with my contact form I created with CSS. It was surprising that even such a niche task was 
+		already done by someone and <a href="https://qiita.com/curioussafuta/items/fa077cbf820faca30598" target="_blank">
+		tips for customizing Google Form </a> were shared. 
+		Looking through the hundreds of lines of Google Forms' codes on console in Developer Tools and finding only 
+		the relevant name IDs (e.g. name = "entry.316160415") was pretty tough, but thanks to tips I found online, 
+		I was able to apply example code to my contact form.<br><br>
+
+		<b>3. Importance of Accessibility</b>　 Finally, it was inspiring that so many measures to improve the accessibility of a site 
+		are required /expected. The increased number of useful frameworks has made it much simpler to implement many of these measures, 
+		but the user expectations for site performance have also increased. 
+		For example, we can easily create features such as responsiveness or a pop-up modal using Bootstrap and so users have come to expect them. 
+		As a result, accessibility challenges are now not only for people with disabilities, but also for offline users, the elderly, 
+		or people with color recognition problems. 
+		Making a site accessible for so many different use cases is challenging, but it also inspires my problem solving skills.
+		</article>
+    	</div>
+  	</div>
+	</div>
+	</div>
+
+	<!-- Stated 3 ways in which my site is accessible. -->
+
+	<div class= "wrapper">
+	<div class ="wrappedArticle">
+	<div class="grad-wrap">
+ 	<input id="trigger3" class="grad-trigger" type="checkbox">
+ 	<label class="grad-btn" for="trigger3"><span class="fa fa-chevron-down"></span></label>
+   	<div class="grad-item">
+
+		<article><h3 id="accessibilities">3 ways that my site is accessible</h3>
+		I have developed my site to be accessible on three devices: desktop PCs, smartphones and tablets. I also followed three suggestions 
+		from the <a href="https://www.w3.org/TR/WCAG20/" target="_blank">Web Content Accessibility Guidlines</a> (WCAG).<br>
+		<br>
+
+		<!-- First way that my site is accessible -->
+
+        	<h4>1. Perceivable</h4>
+		Information and user interface components on my site are presentable to users in ways they can easily perceive. Here are three examples.<br>
+		<br>
+		<b>Text Alternatives</b>　 Any non-text content such as an image or an object is accessible by text alternatives, 
+		which serve the equivalent purpose of the image/object. 
+		For example, the alt parts of the images in the sidebar and the carousel slides indicate not only what the photo is, 
+		but also which page the photo is linked to and what content the page contains.<br>
+
+		<figure>
+		<img src="img/report/alt.PNG" style="width:100%;" 
+			alt="a screenshot of HTML <img> source code shows the alt part as a supporting document.">
+		<figcaption>img tag contains text alternatives serves equivalent purpose of the image</figcaption></figure>
+		
+		<b>Resize Text</b>　 Except for the navigation menu of text such as on the side bar or on the top navigation tabs, 
+		text can be resized without assistive technology up to 200 percent without loss of content or functionality. 
+		Specifically, when a user clicks small A, medium A, or large A in Font Size on the upper right of the left column 
+		and on the right of the breadcrumb, the font size of the article can be changed to 1.0em, 1.5em, or 2.0em respectively.<br>
+
+		<img src="img/report/fontsize.PNG" height="38" width="136" 
+			alt="a screenshot of Font Size shows the image of the resize text function described above."><br>
+		<br>
+		<b>Images of Text</b>　 To achieve the visual presentation, I used text to convey information rather than images of text. 
+		For example, in the top navi tabs, I use nav-tabs class from Bootstrap and CSS to present text decorations and active tab. Also, 
+		I expressed the arc text in the sidebar not as an image of text but as text using the jQuery plugin called 
+		<a href="https://tympanus.net/Development/Arctext/" target="_blank">Arctext</a>, and achieved fast loading with reading minimal images.<br>
+		<br>
+		<p class="arcText">Arc Decoration as Text</p>
+
+		<!-- Second way that my site is accessible -->
+
+        	<h4>2. Operable</h4>
+		User interface components and navigation are operable.<br>
+		<br>
+		<b>Page Titled</b>　I titled web pages to describe topic or purpose so people with visual disabilities, cognitive disabilities, 
+		or reading disabilities can benefit from the ability to identify content by its title. 
+		For instance, I titled my site as "Cat's Well Being Magazine" for user to easily understand the site topic. 
+		To support the site title, I titled each of the four pages as sub-topics with the following catchphrases: 
+		Make Your Cat Happy, Make Your Cat Strong, Prevent Disease, and Food is Everything. 
+		In addition, for top navigation tabs, I've titled one word of tagline on each page: Happiness, Strength, Prevention, and Food.<br>
+
+		<figure>
+		<img src="img/report/titledPages.PNG" style="width:80%;" 
+			alt="a screenshot of the site shows titled pages (yellow highlighted) which describe topic or purpose.">
+		<figcaption>Titled pages describe topic or purpose of each page</figcaption></figure>
+
+		<b>Multiple Ways</b>　To help people finding information faster, I provided three ways to locate a web page within my site. 
+		Specifically, as you can see from the above image, there is a list of text links in the top navigation tabs on each page to 
+		sequentially move forward or backward through the web pages. 
+		Also, each page contains image links in a side navigation bar to reach each of the other pages. 
+		In addition, the main(index) page features a carousel that contains slider image links to jump to the other pages.<br>
+		<br>
+		<b>Link Purpose</b>　You can determine the purpose of each link from the link text alone. 
+		For example, in the paragraph of 1. Linking contact form and google form in the section of 3 things I learned, 
+		I linked the referred website with a link text of "customizing Google Form" rather than just naming "this site".<br>
+		<br>
+		<b>Location</b>　To avoid user confusion, I provided information about the user's location within a set of web pages. 
+		In other words, I organized topics into categories and a breadcrumb trail helps users identify the current location in the 
+		hierarchy of categories. In addition, I provided a Table of Contents on each page to help users locate the specific contents.<br>
+
+		<figure>
+		<img src="img/report/location.PNG" style="width:40%;" 
+			alt="a screenshot shows a breadcrumb and table of contents (yellow highlighted) in a page.">
+		<figcaption>Breadcrumb and TOC support locating</figcaption></figure>
+
+		<b>Section Headings</b>　I used section headings to organize the content. 
+		For example, the "Make Your Cat Strong" page is organized with 3 headings: Make exercise fun, Address weakness, and Avoid additives. 
+		As a result, people with learning disabilities can use the headings to understand the overall organization of the page content more easily. 
+		Also, people who navigate content by keyboard can jump the focus from heading to heading using Table of Contents on each page, 
+		enabling them to quickly find content of interest.<br>
+		<br>
+
+		<!-- Third way that my site is accessible -->
+
+        	<h4>3. Understandable</h4>
+		My site provides information and offers a user interface that is easy to understand.<br>
+
+		<br>
+		<b>Consistent Navigation</b>　I provided a consistent navigation mechanism that is repeated on all pages. 
+		For example, I have the following mechanisms in the same position and in the same style on all pages: top navigation tabs, 
+		side bar links, table of contents, decoration of heading and article, and breadcrumb. 
+		This helps people with cognitive limitations, low vision, or intellectual disabilities predict and find content comfortably on each page.<br>
+		<br>
+		<b>Labels and Instructions</b>　I provided labels and instructions when content requires user input. 
+		For example, in the contact form, I labeled all the input items to help user input. 
+		Also, at the top of the AI Health Check section, the page instructs the input method to select the symptom 
+		from the drop-down menu and answer questions by clicking Yes / No.<br>
+
+		<figure>
+		<img src="img/report/contactform.PNG" style="width:30%;" 
+			alt="a screenshot highlights labels and an error suggestion on contact form.">
+		<figcaption>Labeled items and error suggestion</figcaption></figure>
+
+		<b>Error Suggestion</b>　If an input error is detected and suggestions for correction are known, the suggestions are provided to the user. 
+		For example, if there is any blank in the contact form, the system will suggest filling in the blank as shown in the above screenshot.<br>
+		</article>
+    	</div>
+  	</div>
+	</div>
+	</div>
+
+	<!-- Stated 3 ways in which I have considered usability in my site. -->
+
+	<div class= "wrapper">
+	<div class ="wrappedArticle">
+	<div class="grad-wrap">
+ 	<input id="trigger4" class="grad-trigger" type="checkbox">
+ 	<label class="grad-btn" for="trigger4"><span class="fa fa-chevron-down"></span></label>
+   	<div class="grad-item">
+
+		<article><h3 id="usabilities">3 ways of usabilities</h3>
+
+		<!-- First way of usability -->
+
+        	<b>1. Character/color identification</b>　I paid attention to text decoration and tried to make the site easy to see 
+		for people with color identification problems. 
+		For example, I don't use the primary colors green, red, blue, and yellow as text colors because they are hard to read for some people. 
+		Instead, as you can see from the heading decoration, I used yellow for the text-shadow. Also, I defined dark blue as the color of the text link. 
+		In addition, I considered that the user can quickly adapt to the expression of the site and readability. 
+		Specifically, I not only used the cute font that matches the site image, but also consistent the font style 
+		so the words I want to emphasize such as title are Coustard, and the other sentence and text are Quicksand.<br>
+
+		<figure>
+		<img src="img/report/text-decoration.png" style="width:80%;" alt="a list of text decorations used for the site.">
+		<figcaption>Light color is used for decoration and dark color is used for text</figcaption>
+		</figure>
+
+		<!-- Second way of usability -->
+
+        	<b>2. Maximized page access</b>　This is not only about accessibility, but also about usability for site owners. 
+		To increase the site access, I maximized the access of every pages by appealing the same contents in different ways. 
+		As a result, user can quicklly get a sense of the contents for each page by intuition, and each page has more opportunity to be accessed. 
+		For example, top navi bar, side bar, and carousel on the main page have same links to other 5 pages, 
+		but the top navi bar tells the contents of the page in one word, the side bar tells them by intuition with image and text, 
+		and the carousel tells them by intaraction with image slides.<br><br>
+
+		<!-- Third way of usability -->
+
+        	<b>3. Site operation</b>　Firstly, I paid attention to the convenience of site operation, 
+		and tried to make it easy for users to click / touch and move the screen. 
+		For example, by clicking on my hand-drawn cat illustration at the bottom right of the screen, 
+		user can quickly return to the top of the page even if he/she scrolls down for a long page. <br>
+
+		<figure>
+		<img src="img/report/Go-to-Top-icon.PNG" alt="An illust icon located on the bottom right of each page that lets user back top.">
+		<figcaption>Go-to-Top illust icon</figcaption></figure>
+
+		Also, by clicking the Read more / Close button on all articles, user can switch the focus to the article he/she wants to read. 
+		In addition, user does not need to scroll down to reach the desired article. 
+		He / she can jumps to there from the Table of Contents section at the top of each page by clicking or using keyboard.<br>
+		Secondly, from a mobile-first perspective, I well considered about the mobile version of the site display. 
+		For example, I changed the improper displays as follows which occurred when shrinking the page: 
+		<ol>
+		<li>Breadcrumb was displayed in two lines. → Adjusted padding.</li>
+		<li>Back-to-top illustration button was too big and disturbed the mobile screen. → Changed the width of the image to a smaller size.</li>
+		<li>Too much margin for the article limited the number of characters displayed on the screen. → Deleted margin and defined margin-bottom only.</li>
+		</ol>
+
+		<figure>
+		<img src="img/report/mobile-view.jpg" style="width:30%;" alt="Mobile view of the site after fixed the above list of improper displays.">
+		<figcaption>Mobile view after fixed the improper displays</figcaption></figure>		
+		</article>
+    	</div>
+  	</div>
+	</div>
+	</div>
+
+	<!-- Stated 3 things I had to learn/find out by myself when creating my site, and described how I did that -->
+
+	<div class= "wrapper">
+	<div class ="wrappedArticle">
+	<div class="grad-wrap">
+ 	<input id="trigger5" class="grad-trigger" type="checkbox">
+ 	<label class="grad-btn" for="trigger5"><span class="fa fa-chevron-down"></span></label>
+   	<div class="grad-item">
+
+		<article><h3 id="learned">3 things I learned</h3>
+
+		<!-- First thing I learned -->
+
+        	<b>1. Linking contact form and Google form</b>　In order to achieve an easy-to-use and simple contact form, 
+		I had to learn what I can do with JavaScript and its implementation and limitations. 
+		Specifically, since JavaScript does not directly support email protocol due to security reasons, I learned 
+		<a href="https://stackoverflow.com/questions/7381150/how-to-send-an-email-from-javascript" target="_blank">
+		How to send and email from JavaScript</a> through StackOverflow that I can implement the protocol using Ajax or using the API key from Mandrill. 
+		Initially, I was thinking of implementing a contact form by combining this email sending system with Bootstrap's modal. 
+		However, the implementation was not that simple and I was not sure about the security standard of Ajax, 
+		and the API key of Mandrill is visible to malicious users, so the quality of the security did not satisfy my needs. 
+		After repeated trials and research on the implementation, I eventually came up with the simplest solution, 
+		which was linking GoogleForms and my CSS contact form with minimal JavaScript. 
+		By adapting to GoogleForm, in addition to solving security issues, the code is simple and there is no problem with user use. 
+		I was able to successfully link my contact form and GoogleForm while referring the tips for 
+		<a href="https://qiita.com/curioussafuta/items/fa077cbf820faca30598" target="_blank">customizing Google Form</a> on Qiita.<br>
+
+		<figure>
+		<img src="img/report/googleform.PNG" style="width:70%;" 
+			alt="a screenshot of a part of the source codes of Google form contains the name ID to be linked.">
+		<figcaption>Google form source code contains name ID to be linked</figcaption></figure>
+
+		<!-- Second thing I learned -->
+
+        	<b>2. Implementation of AI Health Check sample</b>　To display the AI health check sample operation, I learned how to create 
+		a web application using JavaScript and jQuery (I'm looking forward to learning at Level 6 about how to implement the actual AI health check!). 
+		First, I referred the implementation idea of <a href="http://migo-media.com/yes-no/" target="_blank">Simple diagnostic quiz</a> 
+		that only desplays the next question when Yes / No is clicked, and then, customized the design and specifications. 
+		Specifically, in the <a href="js/healthcheck.js" target="_blank">healthcheck.js</a> file, I added two variables, id_value and count. 
+		id_value tracks which question Yes was clicked, and count tracks the incremented diagnostic score. 
+		Using these variables, I customized the specification so that the program adds diffrent points based on which question was clicked 
+		and changes the advice based on the total points. 
+		I came up with this implementation idea because I took a class, AI and Expert System class at the previous University. 
+		I learned the Rule-based Expert System advises on a scored number called the Confidence Factor in knowledge base. 
+		Also, I customized the followings to improve usability and design: 
+		1. Changed the Yes and No buttons to bubbles so it looks like a cat is talking, 
+		2. Added a progress bar from Bootstrap, 3. Added pull-down menu to select which to check.<br>
+
+		<figure>
+		<img src="img/report/AI-health-check.PNG" style="width:70%;" alt="a screenshot of AI health check sample.">
+		<figcaption>AI health check shows the sample interaction image of application</figcaption></figure>
+
+		<!-- Third thing I learned -->
+
+        	<b>3. Implementation of ML Happiness Check sample</b>　To show the ML Happiness Check to the user as a sample, I had to learn 
+		<a href="https://developers.google.com/web/fundamentals/media/recording-audio/?hl=en" target="_blank">
+		how to record audio from a user in JavaScript</a>. 
+		Fortunately, thanks to the existing JavaScript methods and an API (MediaRecorder API) I was able to implement this sample relatively easily. 
+		Specifically, I first used the JavaScript method getUserMedia() to get access to the user's microphone. 
+		Next, I created a new instance of the MediaRecorder API. 
+		Finally, using the start / stop method in the recorder I could create the voice data 
+		by pushing (stack operation) the voice chunk to the array with the EventListener. 
+		If I can collect cat voice data from users in this way, it could be useful research material in the future.<br>
+
+		<figure>
+		<img src="img/report/ML-happiness-check.PNG" style="width:80%;" 
+				alt="a screenshot of ML happiness check shows the sample result and voice data to be downloaded.">
+		<figcaption>ML happiness check shows the sample result and voice data for DL</figcaption></figure>
+		</article>
+    	</div>
+  	</div>
+	</div>
+	</div>
+
+	<!-- Aspects of my work I think worked well and why. -->
+
+	<div class= "wrapper">
+	<div class ="wrappedArticle">
+	<div class="grad-wrap">
+ 	<input id="trigger6" class="grad-trigger" type="checkbox">
+ 	<label class="grad-btn" for="trigger6"><span class="fa fa-chevron-down"></span></label>
+   	<div class="grad-item">
+
+		<article><h3 id="workedwell">What aspects worked well</h3>
+
+		<b>1. Site design and strucure</b>　In this project, I was able to implement a well-organized site with clear content 
+		by carefully considering the site design and the site structure, and following the guidelines of 
+		<a href="https://www.w3.org/TR/WCAG20/" target="_blank">Web Content Accessibility Guidlines</a> (WCAG). 
+		Specifically, when a user visits my site for the first time, he or she can see at a glance that 
+		my site is an information magazine about cat wellness. 
+		At the same time, the top navigation tab does not become a toggle on mobile view, 
+		so the active tab tells the user the current page location and also the user can intuitively recognize 
+		that the topics needed for cat well-being are Happiness, Strength, Prevention, and Food without having to click. 
+		In addition, if you go to each page (for example, the Happiness page), you can see sub-items of things you can do to make your cat happy 
+		(such as Playing and Cleaning) which are visible from Table of Contents without having to scroll. 
+		In other words, I designed my site to clearly convey information for each category with just a few clicks and scrolls. 
+		I achieved this design becase I spent time thinking about the site's mockup design as a first step before implementing the site. 
+		For example, I thought about the following, among others, when designing the mockups:<br>
+		<ul>
+		<li>What are the clearest taglines for the site title and page titles?</li>
+		<li>What is the best column configuration?</li>
+		<li>What information should be compiled in the site?</li>
+		<li>How should I categorize them to make them easier for the user to understand?</li>
+		<li>How can I maximize access to those pages?</li>
+		<li>What applications can make my site more modern and attractive?</li>
+		</ul>
+
+        	<b>2. Template for top navigation tabs and side bar</b>　
+		Simplifying the repeated code throughout the pages using partials has worked well in two ways. 
+		Firstly, the partials enable a single pre-compile process and it avoids the duplicate rendering process. 
+		For example, the site doesn't need to compile the source code for top navigation bar every time user clicks on a new page. 
+		This is because the code is pre-compiled by partials when user lands on a first page. 
+		This improves the site loading speed and helps user to visit other pages comfortably. 
+		Secondly, the code became neat, easy to read, and easy to manage for other developers who could potentially work on this site in the future. 
+		For example, as described in the Lecture 9.2.6: Handlebars.js Partials, I simplified the code for top navigation bar 
+		and sidebar that are repeatedly appeared on all pages using partials. 
+		I used the builtin helpers {{each}} as &lt;li> is repeated in the navigation bar, 
+		and used placeholders {{url}} and {{name}} in my partials as each &lt;li> contains a URL link and text. <br>
+
+		<figure>
+		<img src="img/report/partials.PNG" style="width:70%;" 
+			alt="Simplified code using Handlebas Partials shows the template for top navigation tabs.">
+		<figcaption>Simplified top navigation tabs using Handlebas Partials</figcaption></figure>
+
+        	<b>3. AI and ML web applications</b>　I think it worked well as a content idea that adding sections for AI Health check 
+		and ML Happiness check, and providing a sample to show an interaction image as a prototype idea. 
+		I have two reasons why I think so. First, this content may provide users with modern and advanced medical features available online. 
+		If a robust implementation can be made, site access may increase exponentially, 
+		and I think it will also help raise awareness of user about well-being of cats. 
+		Second, this can be a good research subject for researchers and students. 
+		I myself also hope to contribute to the implementation through my degree program as a student.<br><br>
+		</article>
+    	</div>
+  	</div>
+	</div>
+	</div>
+
+	<!-- Aspects of my work could be improved, and how I might do things differently another time. -->
+
+	<div class= "wrapper">
+	<div class ="wrappedArticle">
+	<div class="grad-wrap">
+ 	<input id="trigger7" class="grad-trigger" type="checkbox">
+ 	<label class="grad-btn" for="trigger7"><span class="fa fa-chevron-down"></span></label>
+   	<div class="grad-item">
+
+		<article><h3 id="improve">What aspects could be improved</h3>
+
+        	<b>1. Search Engine Optimization</b>　Working on the templates for my site using Handlebars helped me see 
+		the trade-offs in code optimization which could be improved for me to consider Search Engine Optimization. 
+		For example, I realized that while code becomes neat and easy to read, as you can see from the source code on the published site, 
+		a search engine doesn't read the page information that is simplified with handlebars' tag. 
+		Therefore, I decided not to apply handlebars to all of the repeated code on the site 
+		because I think it is better to create a site that is easy for search engines to find and interpret. 
+		Next time, I would research how to use Handlebars while improving SEO.<br><br>
+
+        	<b>2. Embeded web application</b>　
+		For this project, I provided content ideas and samples for an “AI Health check” and “ML Happiness Check”. 
+		These would be applications that check a cat’s health and happiness using AI and machine learning. 
+		I think I can create a working prototype of this idea as my skills improve later in the course. 
+		For example, for the AI Health Check, I may be able to create a cat version of an AI diagnostic system 
+		while consulting veterinarians with questions and diagnoses and referring to AI medical diagnostic expert systems already made for humans. 
+		For the ML Happiness Check, I may let Machine Learning study a cat's meows and their meanings 
+		and let it teach users the happiness / warning signs from their cats.<br>
+		</article>
+    	</div>
+  	</div>
+	</div>
+	</div>
+
+	<!-- Resources used when creating my work. -->
+
+	<div class= "wrapper">
+	<div class ="wrappedArticle">
+	<div class="grad-wrap">
+ 	<input id="trigger8" class="grad-trigger" type="checkbox">
+ 	<label class="grad-btn" for="trigger8"><span class="fa fa-chevron-down"></span></label>
+   	<div class="grad-item">
+
+		<article><h3 id="resources">Resources used for my work</h3>
+
+		Long URL is shortened as it breaks the article design on mobile view. Click on URL to see the full pass. <br>
+		<br>
+        	[1] T. Rayside, 'Hand Drawn Border Effects', Published Year Unknown. [Source code].<br>
+		<a href="https://codepen.io/tmrDevelops/pen/NPXodB" target="_blank">https://codepen.io/tmrDevelops/</a><br>
+		<br>
+		[2] w3schools.com, 'How TO - Scroll Back To Top Button', 1999-2020. [Source code].<br>
+		<a href="https://www.w3schools.com/howto/howto_js_scroll_to_top.asp" target="_blank">https://www.w3schools.com/</a><br>
+		<br>
+		[3] saruwakakun.com, 'Striped underline', 2019. [Source code].<br>
+		<a href="https://saruwakakun.com/html-css/reference/border" target="_blank">https://saruwakakun.com/border</a><br>
+		<br>
+		[4] MIGO, '【Yes/No chart】Diagnosis tool', 2015. [Source code].<br>
+		<a href="http://migo-media.com/yes-no/" target="_blank">http://migo-media.com/yes-no/</a><br>
+		<br>
+		[5] metrograph.jp, 'Implement Read more button in CSS', 2017. [Source code].<br>
+		<a href="https://metrograph.jp/css_gradation_paragraph/" target="_blank">https://metrograph.jp/css_gradation</a><br>
+		<br>
+		[6] DESHINON, 'CSS button design', 2019. [Source code].<br>
+		<a href="https://deshinon.com/2019/03/02/simple-button-css/" target="_blank">https://deshinon.com/simple-button-css/</a><br>
+		<br>
+		[7] Qiita.com, ' Customizing Google form', 2020. [Online]. Available:<br>
+<a href="https://qiita.com/curioussafuta/items/fa077cbf820faca30598" target="_blank">https://qiita.com/</a>. [Accessed: 27- Feb- 2020].<br>
+		<br>
+		[8] hp-html.jp, 'RGBA generator', Published Year Unknown. [Online]. Available:<br>
+		<a href="https://hp-html.jp/rgba/" target="_blank">https://hp-html.jp/rgba/</a>. [Accessed: 19- Mar- 2020]. <br>
+		<br>
+		[9] Handlebarsjs.com, 'Partials', 2019. [Online]. Available:<br>
+		<a href="https://handlebarsjs.com/guide/partials.html" target="_blank">https://handlebarsjs.com/partials</a>. [Accessed: 7- Mar- 2020].<br>
+		<br>
+		[10] Bootstrap, 'Documentation', 2020. [Online]. Available:<br>
+		<a href="https://getbootstrap.com/docs/4.4/getting-started/introduction/" target="_blank">https://getbootstrap.com/docs/4.4/</a>. [Accessed: 18- Mar- 2020].<br>
+		<br>
+		[11] P. Kinlan, 'Recording Audio from the User', Published Year Unknown. [Source code].<br>
+		<a href="https://developers.google.com/web/fundamentals/media/recording-audio/?hl=en" target="_blank">https://developers.google.com/recording-audio</a><br>
+		<br>
+		[12] Arctext.JS, 'CURVING TEXT WITH CSS3 & JQUERY', 2011. [Online]. Available:<br>
+		<a href="https://tympanus.net/Development/Arctext/" target="_blank">https://tympanus.net/Development/Arctext/</a>. [Accessed: 19- Feb- 2020].<br>
+		<br>
+		</article>
+    	</div>
+  	</div>
+	</div>
+	</div>
+
+	<!-- Appendices: Site Map, Wireframes and Mockups. Thumbnail class from Bootstrap is used to present the images. -->
+
+	<div class= "wrapper">
+	<div class ="wrappedArticle">
+	<div class="grad-wrap">
+ 	<input id="trigger9" class="grad-trigger" type="checkbox">
+ 	<label class="grad-btn" for="trigger9"><span class="fa fa-chevron-down"></span></label>
+   	<div class="grad-item">
+
+		<article><h3 id="appendices">Appendices</h3>
+        	<h4>Site Map</h4>
+		Click <a href="sitemap.html">Site Map</a> to see the entire site of organization.<br>
+		<br>
+
+        	<h4>Wireframes</h4>
+		Click the following links to see the PDF files of wireframes for desktop, tablet, and mobile. 
+		Although I had to work on some CSS styling for the tablet view, since the desktop view of this site has the same design as the tablet view, 
+		I included these wireframes on pages 1-7 as 'Wireframes for Desktop and Tablet'. 
+		Scroll down to page 8 to see the Wireframes for Mobile. I created the wireframes show the site skelton and markups using PowerPoint. 
+		There are two revisions and the final version shows the final wireframes with markups for this project.<br>
+		<ol>
+		<li><a href="wireframes/wireframes_Ver_1.pdf" target="_blank">First version</a></li>
+		<li><a href="wireframes/wireframes_Ver_2.pdf" target="_blank">Final version</a>: 
+			Fixed some structures and added markups showing the HTML and CSS tags used.</li>
+		</ol>
+
+        	<h4>Mockups</h4>
+		Click the following links to see the series of versions of hand-drawn mockups images for deskptop, tablet, and mobile. 
+		There are three revisions and the final version shows the final mockups design for this project.<br>
+		<br>
+		<b>Mockups for Desktop and Tablet</b>
+		<ol>
+		<li><a href="img/report/ver.1_mockups-desktop_and_tablet.jpeg" target="_blank">First version</a></li>
+		<li><a href="img/report/ver.2_mockups-desktop_and_tablet.jpeg" target="_blank">Second version</a>: Added coloring.</li>
+		<li><a href="img/report/ver.3_mockups-desktop_and_tablet.jpeg" target="_blank">Final version</a>: Added a hand-drawn image button to back top.</li>
+		</ol>
+
+		<b>Mockups for Mobile</b>
+		<ol>
+		<li><a href="img/report/ver.1_mockups-mobile.jpeg" target="_blank">First version</a></li>
+		<li><a href="img/report/ver.2_mockups-mobile.jpeg" target="_blank">Second version</a>: Added coloring.</li>
+		<li><a href="img/report/ver.3_mockups-mobile.jpeg" target="_blank">Final version</a>: Added a hand-drawn image button to back top.</li>
+		</ol>
+		</article>
+    	</div>
+  	</div>
+	</div>
+	</div>
+<!-- Page contents end -->
+
+</div>		<!-- Left column end -->
+
+<!-- Include arctext JS to display arc texts in the right column -->
+<script src="js/jquery.arctext.js"></script>
+
+<div class=".col-md-3">	<!-- Right column start -->
+
+<!-- 
+	This global side bar section contains the decorated arc text with a link and an image for five pages, respectively. 
+	Simplified with Handlebars' partials and builtin helper as a side navi template. See template.js for source code in detail. 
+	For curved text, I referred Arctext.js: https://tympanus.net/Development/Arctext/ and adapted to my site by putting together
+	with rounded images and changing the arc radius.
+-->
+	<div id = "sideNav"><br>   
+	<script id="sideNavTemplate" type="template/handlebars">
+	{{#each object}} {{>sideNavList}} {{/each}}
+	</script>
+	</div>
+
+</div>		<!-- Right column end -->
+</div>		<!-- row 2 end -->
+
+<footer>	<!-- Global footer section -->
+    <div id="contactInformation">
+	<address>
+            <ul class="contactInfo">
+                <li id = "contactUs">Contact Us:</li>
+                <li id = "publisherName">
+		<!-- Same contact form in 'Contact' section on top right of the site is used -->
+		<a class="open-button" onclick="openForm()" >Cat's Well Being Study Group</a>
+		</li>
+                <li id = "tell">Tell: <a href="tell:+813-1234-5678">+813-1234-5678</a></li>
+		<li id = "address">Yanagawa-shi Fukuoka, Japan</li>
+		<li><a href="sitemap.html">Site Map</a></li>
+            </ul>
+	</address>
+    </div>
+</footer>
+
+</div>	<!-- container end -->
+
+<!-- Include Popper.js bootstrap.js to enable using Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" 
+	integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+<script src="js/fontScript.js"></script>	<!-- JS script to change the font size -->
+<script src="js/template.js"></script>		<!-- JS script to pre-compile global templates -->
+
+</body>
+</html>

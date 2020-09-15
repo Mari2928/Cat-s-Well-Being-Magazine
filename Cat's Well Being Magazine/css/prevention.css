@@ -1,0 +1,92 @@
+/* Prevention (4th page) CSS-------------------------------------*/
+
+/* 
+   Style for AI Health check sample section.
+   Referred Yes/No Diagnosis Tool: http://migo-media.com/yes-no/
+   and adapted to my site by removing annecessary code,
+   changing Yes/No buttons to Yes/No balloons, adding dropdown menu 
+   and progress bar, and changing font, color, and box decoration.
+*/
+
+/* Dropdown menu to select organ to check */
+
+#dropdown-menu{	
+    margin-left: 10px;
+    padding: 15px;
+}
+
+/* Area contains questions, result, and bubbles */
+
+.yesno {   
+    height: 210px;
+    position:relative;
+    background: #fff;
+    margin:0 0 40px;
+    clear: both;
+    overflow: hidden;
+}
+
+/* ul area contains Yes/No bubbles */
+
+.yesno ul{ 
+    overflow: hidden;
+    padding: 0 0 0 25px;
+}
+
+/* The first question to be set as absolute */
+
+.positionFit {  
+    position:absolute;
+    left: 0px;
+    top: 20px;
+    width: 100%;
+}
+.positionFit p{
+    background: #eee none repeat scroll 0 0;
+    padding: 10px 25px;
+    margin: 0 25px;
+}
+
+/* Progress bar from Bootstrap */
+
+.progress { 
+    margin: 0 25px 3px;
+}
+
+/* Style Yes/No babbles */
+
+/* Make round box as a part of babble */
+
+.balloon {
+    font-family: 'Coustard', Arial, Helvetica, sans-serif;
+    position: relative;
+    display: inline-block;
+    margin: 0.6em 0;
+    padding: 10px 5px;
+    width: 40%;
+    color: black;
+    font-size: 25px;
+    background: #e0edff;
+    border-radius: 15px;
+    float: center;
+    text-align: center;
+}
+
+/* Make downward triangle as a part of babble */
+
+.balloon:before {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -15px;
+    border: 15px solid transparent;
+    border-top: 15px solid #e0edff;
+}
+
+/* Change text color and add text shadow when hovered */
+
+.balloon a:hover{
+    color: #fff;
+    text-shadow: 1px 1px 1px rgb(61,70,71);
+}

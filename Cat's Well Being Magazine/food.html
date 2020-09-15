@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- This head section contains all the invisible information about the page -->
+<head>
+  <title>Cat's Well Being Magazine - Food is Everything</title>
+  <meta charset="utf-8">
+  <meta name="description" content="This is a website for people who care about their cats' well being.">
+  <meta name="author" content="Cat's Well Being Study Group">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="refresh" content="600">
+  <meta name="keywords" content="Happiness and health for cats - Cat's Well Being Magazine">
+
+  <!-- Include Bootstrap CSS to enable using the framework -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <!-- Include CSS for this website -->
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+  <!-- Include Handlebars from a CDN to use template engine -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.3/handlebars.min.js"></script>
+
+</head>
+<body>
+<!-- This container section contains the structure for all the visible content -->
+<div class="container">
+
+<!-- Row 1 start: this row contains two columns for About and Contact -->
+<div class="row" id="row1">
+
+	<div class="col-6">	<!-- Column for About -->
+		<div id = "about"><a href="index.html#aboutUs">About</a></div>
+	</div>
+
+	<div class="col-6">	<!-- Column for Contact -->
+		<div id = "contact">
+	<!-- 
+		A pop-up contact form referred W3Schools.com: https://www.w3schools.com/howto/howto_js_popup_form.asp
+		and adapted to my site by changing the input items and adding function to send email to the site owner. 
+		Google Form is linked to enable secure email communication.
+		Contact form is displayed when 'Contact' is clicked and is not displayed when 'Close' is clicked.
+	-->
+		<a class="open-button" onclick="openForm()" >Contact</a>
+		<div class="form-popup" id="myForm"> <!-- pass user inputs to Google Form through the link below -->
+  		<form class="form-container" 
+			action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSelU13h7cLCPmUGS5-tAA7W2bpd2BA7L9rey_DTJeL5kVN9lQ/formResponse" target="_blank">
+   		 	<h1>Contact</h1>
+   		 	<label><b>Name</b></label>	<!-- entry# as name is used to link with my Google form -->
+   		 		<input class="name" type="text" placeholder="Enter Name" name="entry.316160415" required>
+   		 	<label><b>Email</b></label>
+   		 		<input class="email" type="text" placeholder="Enter Email" name="entry.478390654" required>
+   		 	<label><b>Message</b></label>
+	  	 		<textarea class="msg" rows="4" cols="50" name="entry.168446678" placeholder="Enter a message here" required></textarea>
+  		 	<button type="submit" class="btn">Send</button>
+  		 	<button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+ 		</form>
+		</div>
+		</div>
+	</div>
+
+</div>	<!-- Row 1 end -->
+
+<!-- This header section displays the site title -->
+<header>
+	<a href="index.html"><h1 id="siteTitle">Cat's Well Being Magazine</h1></a>
+</header>
+
+<!-- Include jquery to enable handlebars partials and Arctext JS library -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+
+<!-- 
+	This global top navi bar section contains text links to all pages. This reused codes are simplified with 
+	Handlebars' partials and builtin helpers as a top navi template following the instruction in the Lecture 9.2.6 
+	'Handlebars.js partials' and referring the basic usage of partials at:https://handlebarsjs.com/guide/partials.html#basic-partials. 
+	It displays an active tab if active status is true and a normal tab otherwise.
+-->
+<nav id = "topNav">
+<script id="template" type="template/handlebars">
+<ul class = "nav nav-tabs">
+{{#each tab}}
+<li class = "nav-item">
+{{#if active}} {{>activeTab}} 
+{{else}} {{>normalTab}} {{/if}}
+{{/each}}
+</ul>
+</script>
+</nav>
+
+<!-- 
+     Go to Top image button that appears on bottom right of the page. You may also find 
+     this my hand-drawn image at: https://store.line.me/stickershop/product/4176969/ja 
+     as it's in my creater collection at LINE stamp market.  
+-->
+<p id="topBtn">Top<br>
+<a href="#siteTitle"><img src="img/topBtn.png" height="90" alt="Go to Top button"></a>
+</p>
+
+<div class="row">	<!-- Row 2 start -->
+<div class="col-md-9">	<!-- Left column start -->
+<div class="row">	<!-- An inner row in a left column contains breadcrumb and change font script -->
+
+<div class="col-6">
+
+	<!-- Breadcrumb of all pages navigates where you are in the site -->
+	<ul class = "breadcrumb">
+		<li><a href="index.html">Home</a></li>
+		<li>Food</li>
+	</ul>
+</div>
+<div class="col-6">
+
+<!-- 
+     Change the font size of all articles by clicking different size of A. 
+     Referred the Lecture 7.3.5: What can we do with these elements when we have them
+     and adapted to my site by changing style and selecting <article> as affected area to
+     maintain the site design instead of <body> which was taught in the lecture. 
+     See fontScript.js for the source code in detail. 
+-->
+	<div id="changeSize">
+	<p>Font Size: 
+	<span class="small" id = "smallA">A</span>
+	<span class="medium" id = "mediumA"> A </span>
+	<span class="large" id = "largeA">A</span></p>
+	</div>
+</div>
+</div>	<!-- An inner row end -->
+
+<!-- Page contents start -->
+
+	<h1 class="pageTitle">Food is Everything</h1>
+	<!-- Table of contents -->
+	<div class="toc">
+	<b>　Table of Contents</b>
+	<ul>
+	<li><a href="food.html#bestfood">Best food for cat</a></li>
+	<li><a href="food.html#food-examples">High quality cat food examples</a></li>
+	<li><a href="food.html#recipes">Topping food recipes</a></li>
+	</ul>
+	</div>
+
+	<!-- This "Best food for cat" section discusses about the best possible foods considering cat's ecology. -->
+
+	<div class= "wrapper">
+	<div class ="wrappedArticle">	<!-- Article border looks like hand-drawn -->
+	<div class="grad-wrap">		<!-- Read more/Close button using checkbox as a trigger -->
+ 	<input id="food_trigger1" class="grad-trigger" type="checkbox">
+ 	<label class="grad-btn" for="food_trigger1"><span class="fa fa-chevron-down"></span></label>
+   	<div class="grad-item">
+
+		<article>
+		<h3 id="bestfood">Best food for cat</h3>
+        	What do you think is the best cat food? Dry food is the most convenient food for human to feed cats, but it may not be the best food for cats. For example, keep eating cereal without milk and see how thirsty you get. Cats can only eat the food that is given to them. Here we will consider the cat's ecology and discuss the best possible foods.<br> (more contents to be added here...)<br>
+		</article>
+    	</div>
+  	</div>
+	</div>
+	</div>
+
+	<!-- This "High quality cat food examples" section writes about examples of good/bad food for cat -->
+
+	<div class= "wrapper">
+	<div class ="wrappedArticle">
+	<div class="grad-wrap">
+ 	<input id="food_trigger2" class="grad-trigger" type="checkbox">
+ 	<label class="grad-btn" for="food_trigger2"><span class="fa fa-chevron-down"></span></label>
+   	<div class="grad-item">
+
+		<article>
+		<h3 id="food-examples">High quality cat food examples</h3>
+        	If you are looking for a way to keep your cat healthy, the answer will eventually come to food. As with human, food controls everything in a cat's physical condition. The food affects not only the cat's weakness, the circulatory system, but also the intestines, bones, eyes, ears, and even cognitive functions. Giving cats high-quality food can help build a healthy body for a cat. The cost of good food may be cheaper than giving poor food and treating a weak cat in the long term. Here are some of the best foods you can feed your cat and some of the bad foods to avoid.<br> (more contents to be added here...)<br>
+		</article>
+    	</div>
+  	</div>
+	</div>
+	</div>
+
+	<!-- This "Topping food recipes" sub-title section introduces some good tooping food recipes. -->
+
+	<div class= "wrapper">
+	<div class ="wrappedArticle">
+	<div class="grad-wrap">
+ 	<input id="food_trigger3" class="grad-trigger" type="checkbox">
+ 	<label class="grad-btn" for="food_trigger3"><span class="fa fa-chevron-down"></span></label>
+   	<div class="grad-item">
+
+		<article>
+		<h3 id="recipes">Topping food recipes</h3>
+        	By making 70% of a cat’s meal dry food making 30% a topping with fresh ingredients, you can upgrade the quality of protein for your cat. Cat can also have plenty of fluids by giving soup stock. If you give them a good balance, you can improve a cat's constitution. (If cat is on a special diet for disease, consult your veterinarian before trying topping food). Here are some topping food recipes that cat enjoys and can be given safely.<br> (more paragraphs to be added here...)<br>
+		<br>
+
+		<!-- Procedure with a picture for the topping food recipe 1 -->
+
+		<h4>Topping food recipe 1</h4>
+		<p>Comments and information about recipe 1 to be added here.</p>
+		<div class="recipeInfo">
+		<div class="row">	 <!-- Nested row contains two columns for food picture and recipe procedure -->
+   		 <div class="col-sm-4"> <!-- Column for a food picture -->
+
+		<figure>
+		<img src="img/food/recipe1.jpeg" alt="an image describes the topping food for recipe 1." style="width:100%;" >
+		<figcaption>Topping food recipe name 1</figcaption></figure>
+
+  		  </div>
+  		  <div class="col-sm-8"> <!-- Column for recipe procedure -->
+			<ol>
+			<li>Recipe procedure here.</li>
+			<li></li>
+			<li></li>
+			</ol>
+  		  </div>
+		</div>
+		</div>
+		<br>
+
+		<!-- Procedure with a picture for the topping food recipe 2 -->
+
+		<h4>Topping food recipe 2</h4>
+		<p>Comments and information about recipe 2 to be added here.</p>
+		<div class="recipeInfo">
+		<div class="row">	
+   		 <div class="col-sm-4"> 
+
+		<figure>
+		<img src="img/food/recipe2.jpeg" alt="an image describes the topping food for recipe 2." style="width:100%;">
+		<figcaption>Topping food recipe name 2</figcaption></figure>
+
+  		  </div>
+  		  <div class="col-sm-8"> <!-- For recipe procedure -->
+			<ol>
+			<li>Recipe procedure here.</li>
+			<li></li>
+			<li></li>
+			</ol>
+  		  </div>
+		</div>
+		</div>
+		<br>
+
+		<!-- Procedure with a picture for the topping food recipe 3 -->
+
+		<h4>Topping food recipe 3</h4>
+		<p>Comments and information about recipe 3 to be added here.</p>
+		<div class="recipeInfo">
+		<div class="row">	
+   		 <div class="col-sm-4"> 
+
+		<figure>
+		<img src="img/food/recipe3.jpeg" alt="an image describes the topping food for recipe 3." style="width:100%;">
+		<figcaption>Topping food recipe name 3</figcaption></figure>
+
+  		  </div>
+  		  <div class="col-sm-8"> <!-- For recipe procedure -->
+			<ol>
+			<li>Recipe procedure here.</li>
+			<li></li>
+			<li></li>
+			</ol>
+  		  </div>
+		</div>
+		</div>
+		</article>
+    	</div>
+  	</div>
+	</div>
+	</div>
+<!-- Page contents end -->
+
+</div>		<!-- Left column end -->
+
+<!-- Include arctext JS to display arc texts in the right column -->
+<script src="js/jquery.arctext.js"></script>
+
+<div class=".col-md-3">	<!-- Right column start -->
+
+<!-- 
+	This global side bar section contains the decorated arc text with a link and an image for five pages, respectively. 
+	Simplified with Handlebars' partials and builtin helper as a side navi template. See template.js for source code in detail. 
+	For curved text, I referred Arctext.js: https://tympanus.net/Development/Arctext/ and adapted to my site by putting together
+	with rounded images and changing the arc radius.
+-->
+	<div id = "sideNav"><br>   
+	<script id="sideNavTemplate" type="template/handlebars">
+	{{#each object}} {{>sideNavList}} {{/each}}
+	</script>
+	</div>
+
+</div>		<!-- Right column end -->
+</div>		<!-- row 2 end -->
+
+<footer>	<!-- Global footer section -->
+    <div id="contactInformation">
+	<address>
+            <ul class="contactInfo">
+                <li id = "contactUs">Contact Us:</li>
+                <li id = "publisherName">
+		<!-- Same contact form in 'Contact' section on top right of the site is used -->
+		<a class="open-button" onclick="openForm()">Cat's Well Being Study Group</a>
+		</li>
+                <li id = "tell">Tell: <a href="tell:+813-1234-5678">+813-1234-5678</a></li>
+		<li id = "address">Yanagawa-shi Fukuoka, Japan</li>
+		<li><a href="sitemap.html">Site Map</a></li>
+            </ul>
+	</address>
+    </div>
+</footer>
+
+</div>	<!-- container end -->
+
+<!-- Include Popper.js to enable using Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" 
+	integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+<script src="js/fontScript.js"></script>	<!-- JS script to change the font size -->
+<script src="js/template.js"></script>		<!-- JS script to pre-compile global templates -->
+
+</body>
+</html>
